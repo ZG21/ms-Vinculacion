@@ -52,10 +52,16 @@ export class ProponenteTrabajo extends Entity {
   celular: number;
 
   @property({
-    type: 'number',
+    type: 'string',
     required: true,
   })
-  id_vinculacion: number;
+  id_vinculacion: string;
+
+  @property({
+    type: "string",
+    required: false,
+  })
+  foto: string;
 
 
   constructor(data?: Partial<ProponenteTrabajo>) {
