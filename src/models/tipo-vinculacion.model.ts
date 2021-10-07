@@ -15,6 +15,10 @@ export class TipoVinculacion extends Entity {
   })
   nombre: string;
 
+  @property({
+    type: 'string',
+  })
+  id_proponente?: string;
 
   constructor(data?: Partial<TipoVinculacion>) {
     super(data);

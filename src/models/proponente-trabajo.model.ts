@@ -1,4 +1,7 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany, hasOne} from '@loopback/repository';
+import {Departamento} from './departamento.model';
+import {DepartamentoProponente} from './departamento-proponente.model';
+import {TipoVinculacion} from './tipo-vinculacion.model';
 
 @model()
 export class ProponenteTrabajo extends Entity {
@@ -63,6 +66,11 @@ export class ProponenteTrabajo extends Entity {
   })
   foto: string;
 
+  @hasMany(() => Departamento, {through: {model: () => DepartamentoProponente, keyFrom: 'id_proponente', keyTo: 'id_departamento'}})
+  departamentos: Departamento[];
+
+  @hasOne(() => TipoVinculacion, {keyTo: 'id_proponente'})
+  tipoVinculacion: TipoVinculacion;
 
   constructor(data?: Partial<ProponenteTrabajo>) {
     super(data);
