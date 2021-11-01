@@ -1,16 +1,16 @@
-import {Entity, model, property, hasMany, hasOne} from '@loopback/repository';
-import {Departamento} from './departamento.model';
+import {Entity, hasMany, hasOne, model, property} from '@loopback/repository';
 import {DepartamentoProponente} from './departamento-proponente.model';
+import {Departamento} from './departamento.model';
 import {TipoVinculacion} from './tipo-vinculacion.model';
 
 @model()
 export class ProponenteTrabajo extends Entity {
   @property({
-    type: 'string',
+    type: 'number',
     id: true,
     generated: true,
   })
-  id?: string;
+  id?: number;
 
   @property({
     type: 'number',
@@ -55,10 +55,10 @@ export class ProponenteTrabajo extends Entity {
   celular: number;
 
   @property({
-    type: 'string',
+    type: 'number',
     required: true,
   })
-  id_vinculacion: string;
+  id_vinculacion: number;
 
   @property({
     type: "string",

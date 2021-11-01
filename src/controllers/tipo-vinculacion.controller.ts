@@ -4,18 +4,12 @@ import {
   Filter,
   FilterExcludingWhere,
   repository,
-  Where,
+  Where
 } from '@loopback/repository';
 import {
-  post,
-  param,
-  get,
-  getModelSchemaRef,
-  patch,
-  put,
-  del,
-  requestBody,
-  response,
+  del, get,
+  getModelSchemaRef, param, patch, post, put, requestBody,
+  response
 } from '@loopback/rest';
 import {TipoVinculacion} from '../models';
 import {TipoVinculacionRepository} from '../repositories';
@@ -105,7 +99,7 @@ export class TipoVinculacionController {
     },
   })
   async findById(
-    @param.path.string('id') id: string,
+    @param.path.number('id') id: number,
     @param.filter(TipoVinculacion, {exclude: 'where'}) filter?: FilterExcludingWhere<TipoVinculacion>
   ): Promise<TipoVinculacion> {
     return this.tipoVinculacionRepository.findById(id, filter);
@@ -116,7 +110,7 @@ export class TipoVinculacionController {
     description: 'TipoVinculacion PATCH success',
   })
   async updateById(
-    @param.path.string('id') id: string,
+    @param.path.number('id') id: number,
     @requestBody({
       content: {
         'application/json': {
@@ -134,7 +128,7 @@ export class TipoVinculacionController {
     description: 'TipoVinculacion PUT success',
   })
   async replaceById(
-    @param.path.string('id') id: string,
+    @param.path.number('id') id: number,
     @requestBody() tipoVinculacion: TipoVinculacion,
   ): Promise<void> {
     await this.tipoVinculacionRepository.replaceById(id, tipoVinculacion);
@@ -144,7 +138,7 @@ export class TipoVinculacionController {
   @response(204, {
     description: 'TipoVinculacion DELETE success',
   })
-  async deleteById(@param.path.string('id') id: string): Promise<void> {
+  async deleteById(@param.path.number('id') id: number): Promise<void> {
     await this.tipoVinculacionRepository.deleteById(id);
   }
 }

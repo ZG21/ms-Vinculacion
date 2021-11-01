@@ -1,14 +1,14 @@
-import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {belongsTo, Entity, model, property} from '@loopback/repository';
 import {ProponenteTrabajo} from './proponente-trabajo.model';
 
 @model()
 export class TipoVinculacion extends Entity {
   @property({
-    type: 'string',
+    type: 'number',
     id: true,
     generated: true,
   })
-  id?: string;
+  id?: number;
 
   @property({
     type: 'string',
@@ -17,9 +17,9 @@ export class TipoVinculacion extends Entity {
   nombre: string;
 
   @property({
-    type: 'string',
+    type: 'number',
   })
-  id_proponente?: string;
+  id_proponente?: number;
 
   @belongsTo(() => ProponenteTrabajo)
   proponenteTrabajoId: string;

@@ -3,9 +3,9 @@ import {
   CountSchema,
   Filter,
   repository,
-  Where,
+  Where
 } from '@loopback/repository';
-  import {
+import {
   del,
   get,
   getModelSchemaRef,
@@ -13,12 +13,10 @@ import {
   param,
   patch,
   post,
-  requestBody,
+  requestBody
 } from '@loopback/rest';
 import {
-ProponenteTrabajo,
-DepartamentoProponente,
-Departamento,
+  Departamento, ProponenteTrabajo
 } from '../models';
 import {ProponenteTrabajoRepository} from '../repositories';
 
@@ -40,7 +38,7 @@ export class ProponenteTrabajoDepartamentoController {
     },
   })
   async find(
-    @param.path.string('id') id: string,
+    @param.path.number('id') id: number,
     @param.query.object('filter') filter?: Filter<Departamento>,
   ): Promise<Departamento[]> {
     return this.proponenteTrabajoRepository.departamentos(id).find(filter);
@@ -55,7 +53,7 @@ export class ProponenteTrabajoDepartamentoController {
     },
   })
   async create(
-    @param.path.string('id') id: typeof ProponenteTrabajo.prototype.id,
+    @param.path.number('id') id: typeof ProponenteTrabajo.prototype.id,
     @requestBody({
       content: {
         'application/json': {
@@ -79,7 +77,7 @@ export class ProponenteTrabajoDepartamentoController {
     },
   })
   async patch(
-    @param.path.string('id') id: string,
+    @param.path.number('id') id: number,
     @requestBody({
       content: {
         'application/json': {
@@ -102,7 +100,7 @@ export class ProponenteTrabajoDepartamentoController {
     },
   })
   async delete(
-    @param.path.string('id') id: string,
+    @param.path.number('id') id: number,
     @param.query.object('where', getWhereSchemaFor(Departamento)) where?: Where<Departamento>,
   ): Promise<Count> {
     return this.proponenteTrabajoRepository.departamentos(id).delete(where);

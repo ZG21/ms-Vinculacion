@@ -9,7 +9,7 @@ const config = {
   port: 3306,
   user: 'adminProyecto@proyectprog3',
   password: 'HNCkda11',
-  database: 'Prueba'
+  database: 'proyecto prog iii 2021-2'
 };
 
 // Observe application's life cycle to disconnect the datasource when

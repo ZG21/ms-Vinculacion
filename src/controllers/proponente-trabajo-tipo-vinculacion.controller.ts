@@ -3,7 +3,7 @@ import {
   CountSchema,
   Filter,
   repository,
-  Where,
+  Where
 } from '@loopback/repository';
 import {
   del,
@@ -13,11 +13,11 @@ import {
   param,
   patch,
   post,
-  requestBody,
+  requestBody
 } from '@loopback/rest';
 import {
   ProponenteTrabajo,
-  TipoVinculacion,
+  TipoVinculacion
 } from '../models';
 import {ProponenteTrabajoRepository} from '../repositories';
 
@@ -39,7 +39,7 @@ export class ProponenteTrabajoTipoVinculacionController {
     },
   })
   async get(
-    @param.path.string('id') id: string,
+    @param.path.number('id') id: number,
     @param.query.object('filter') filter?: Filter<TipoVinculacion>,
   ): Promise<TipoVinculacion> {
     return this.proponenteTrabajoRepository.tipoVinculacion(id).get(filter);
@@ -54,7 +54,7 @@ export class ProponenteTrabajoTipoVinculacionController {
     },
   })
   async create(
-    @param.path.string('id') id: typeof ProponenteTrabajo.prototype.id,
+    @param.path.number('id') id: typeof ProponenteTrabajo.prototype.id,
     @requestBody({
       content: {
         'application/json': {
@@ -79,7 +79,7 @@ export class ProponenteTrabajoTipoVinculacionController {
     },
   })
   async patch(
-    @param.path.string('id') id: string,
+    @param.path.number('id') id: number,
     @requestBody({
       content: {
         'application/json': {
@@ -102,7 +102,7 @@ export class ProponenteTrabajoTipoVinculacionController {
     },
   })
   async delete(
-    @param.path.string('id') id: string,
+    @param.path.number('id') id: number,
     @param.query.object('where', getWhereSchemaFor(TipoVinculacion)) where?: Where<TipoVinculacion>,
   ): Promise<Count> {
     return this.proponenteTrabajoRepository.tipoVinculacion(id).delete(where);

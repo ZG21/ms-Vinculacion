@@ -4,18 +4,12 @@ import {
   Filter,
   FilterExcludingWhere,
   repository,
-  Where,
+  Where
 } from '@loopback/repository';
 import {
-  post,
-  param,
-  get,
-  getModelSchemaRef,
-  patch,
-  put,
-  del,
-  requestBody,
-  response,
+  del, get,
+  getModelSchemaRef, param, patch, post, put, requestBody,
+  response
 } from '@loopback/rest';
 import {Departamento} from '../models';
 import {DepartamentoRepository} from '../repositories';
@@ -105,7 +99,7 @@ export class DepartamentoController {
     },
   })
   async findById(
-    @param.path.string('id') id: string,
+    @param.path.number('id') id: number,
     @param.filter(Departamento, {exclude: 'where'}) filter?: FilterExcludingWhere<Departamento>
   ): Promise<Departamento> {
     return this.departamentoRepository.findById(id, filter);
@@ -116,7 +110,7 @@ export class DepartamentoController {
     description: 'Departamento PATCH success',
   })
   async updateById(
-    @param.path.string('id') id: string,
+    @param.path.number('id') id: number,
     @requestBody({
       content: {
         'application/json': {
@@ -134,7 +128,7 @@ export class DepartamentoController {
     description: 'Departamento PUT success',
   })
   async replaceById(
-    @param.path.string('id') id: string,
+    @param.path.number('id') id: number,
     @requestBody() departamento: Departamento,
   ): Promise<void> {
     await this.departamentoRepository.replaceById(id, departamento);
@@ -144,7 +138,7 @@ export class DepartamentoController {
   @response(204, {
     description: 'Departamento DELETE success',
   })
-  async deleteById(@param.path.string('id') id: string): Promise<void> {
+  async deleteById(@param.path.number('id') id: number): Promise<void> {
     await this.departamentoRepository.deleteById(id);
   }
 }

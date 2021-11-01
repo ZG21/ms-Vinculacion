@@ -1,14 +1,14 @@
-import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {belongsTo, Entity, model, property} from '@loopback/repository';
 import {Facultad} from './facultad.model';
 
 @model()
 export class Departamento extends Entity {
   @property({
-    type: 'string',
+    type: 'number',
     id: true,
     generated: true,
   })
-  id?: string;
+  id?: number;
 
   @property({
     type: 'string',
@@ -17,10 +17,10 @@ export class Departamento extends Entity {
   nombre: string;
 
   @property({
-    type: 'string',
+    type: 'number',
     required: true,
   })
-  id_facultad: string;
+  id_facultad: number;
 
   @belongsTo(() => Facultad)
   facultadId: string;

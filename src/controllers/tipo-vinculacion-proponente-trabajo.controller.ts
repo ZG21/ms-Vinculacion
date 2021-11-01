@@ -1,14 +1,12 @@
 import {
-  repository,
+  repository
 } from '@loopback/repository';
 import {
-  param,
   get,
-  getModelSchemaRef,
+  getModelSchemaRef, param
 } from '@loopback/rest';
 import {
-  TipoVinculacion,
-  ProponenteTrabajo,
+  ProponenteTrabajo, TipoVinculacion
 } from '../models';
 import {TipoVinculacionRepository} from '../repositories';
 
@@ -31,7 +29,7 @@ export class TipoVinculacionProponenteTrabajoController {
     },
   })
   async getProponenteTrabajo(
-    @param.path.string('id') id: typeof TipoVinculacion.prototype.id,
+    @param.path.number('id') id: typeof TipoVinculacion.prototype.id,
   ): Promise<ProponenteTrabajo> {
     return this.tipoVinculacionRepository.proponenteTrabajo(id);
   }

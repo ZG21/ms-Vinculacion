@@ -3,7 +3,7 @@ import {
   CountSchema,
   Filter,
   repository,
-  Where,
+  Where
 } from '@loopback/repository';
 import {
   del,
@@ -13,11 +13,10 @@ import {
   param,
   patch,
   post,
-  requestBody,
+  requestBody
 } from '@loopback/rest';
 import {
-  Facultad,
-  Departamento,
+  Departamento, Facultad
 } from '../models';
 import {FacultadRepository} from '../repositories';
 
@@ -39,7 +38,7 @@ export class FacultadDepartamentoController {
     },
   })
   async find(
-    @param.path.string('id') id: string,
+    @param.path.number('id') id: number,
     @param.query.object('filter') filter?: Filter<Departamento>,
   ): Promise<Departamento[]> {
     return this.facultadRepository.departamentos(id).find(filter);
@@ -54,7 +53,7 @@ export class FacultadDepartamentoController {
     },
   })
   async create(
-    @param.path.string('id') id: typeof Facultad.prototype.id,
+    @param.path.number('id') id: typeof Facultad.prototype.id,
     @requestBody({
       content: {
         'application/json': {
@@ -79,7 +78,7 @@ export class FacultadDepartamentoController {
     },
   })
   async patch(
-    @param.path.string('id') id: string,
+    @param.path.number('id') id: number,
     @requestBody({
       content: {
         'application/json': {
@@ -102,7 +101,7 @@ export class FacultadDepartamentoController {
     },
   })
   async delete(
-    @param.path.string('id') id: string,
+    @param.path.number('id') id: number,
     @param.query.object('where', getWhereSchemaFor(Departamento)) where?: Where<Departamento>,
   ): Promise<Count> {
     return this.facultadRepository.departamentos(id).delete(where);

@@ -4,18 +4,12 @@ import {
   Filter,
   FilterExcludingWhere,
   repository,
-  Where,
+  Where
 } from '@loopback/repository';
 import {
-  post,
-  param,
-  get,
-  getModelSchemaRef,
-  patch,
-  put,
-  del,
-  requestBody,
-  response,
+  del, get,
+  getModelSchemaRef, param, patch, post, put, requestBody,
+  response
 } from '@loopback/rest';
 import {ProponenteTrabajo} from '../models';
 import {ProponenteTrabajoRepository} from '../repositories';
@@ -105,7 +99,7 @@ export class ProponenteTrabajoController {
     },
   })
   async findById(
-    @param.path.string('id') id: string,
+    @param.path.number('id') id: number,
     @param.filter(ProponenteTrabajo, {exclude: 'where'}) filter?: FilterExcludingWhere<ProponenteTrabajo>
   ): Promise<ProponenteTrabajo> {
     return this.proponenteTrabajoRepository.findById(id, filter);
@@ -116,7 +110,7 @@ export class ProponenteTrabajoController {
     description: 'ProponenteTrabajo PATCH success',
   })
   async updateById(
-    @param.path.string('id') id: string,
+    @param.path.number('id') id: number,
     @requestBody({
       content: {
         'application/json': {
@@ -134,7 +128,7 @@ export class ProponenteTrabajoController {
     description: 'ProponenteTrabajo PUT success',
   })
   async replaceById(
-    @param.path.string('id') id: string,
+    @param.path.number('id') id: number,
     @requestBody() proponenteTrabajo: ProponenteTrabajo,
   ): Promise<void> {
     await this.proponenteTrabajoRepository.replaceById(id, proponenteTrabajo);
@@ -144,7 +138,7 @@ export class ProponenteTrabajoController {
   @response(204, {
     description: 'ProponenteTrabajo DELETE success',
   })
-  async deleteById(@param.path.string('id') id: string): Promise<void> {
+  async deleteById(@param.path.number('id') id: number): Promise<void> {
     await this.proponenteTrabajoRepository.deleteById(id);
   }
 }
