@@ -1,7 +1,7 @@
-import {inject, Getter} from '@loopback/core';
-import {DefaultCrudRepository, repository, HasManyThroughRepositoryFactory, HasOneRepositoryFactory} from '@loopback/repository';
+import {Getter, inject} from '@loopback/core';
+import {DefaultCrudRepository, HasManyThroughRepositoryFactory, repository, HasOneRepositoryFactory} from '@loopback/repository';
 import {MysqlDataSource} from '../datasources';
-import {ProponenteTrabajo, ProponenteTrabajoRelations, Departamento, DepartamentoProponente, TipoVinculacion} from '../models';
+import {Departamento, DepartamentoProponente, ProponenteTrabajo, ProponenteTrabajoRelations, TipoVinculacion} from '../models';
 import {DepartamentoProponenteRepository} from './departamento-proponente.repository';
 import {DepartamentoRepository} from './departamento.repository';
 import {TipoVinculacionRepository} from './tipo-vinculacion.repository';

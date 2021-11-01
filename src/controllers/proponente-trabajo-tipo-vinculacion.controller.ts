@@ -61,7 +61,7 @@ export class ProponenteTrabajoTipoVinculacionController {
           schema: getModelSchemaRef(TipoVinculacion, {
             title: 'NewTipoVinculacionInProponenteTrabajo',
             exclude: ['id'],
-            optional: ['id_proponente']
+            optional: ['proponenteTrabajoId']
           }),
         },
       },

@@ -7,3 +7,5 @@ export * from './departamento.controller';
 export * from './facultad.controller';
 export * from './proponente-trabajo.controller';
 export * from './tipo-vinculacion.controller';
+export * from './proponente-trabajo-tipo-vinculacion.controller';
+export * from './tipo-vinculacion-proponente-trabajo.controller';
