@@ -22,7 +22,7 @@ export class Facultad extends Entity {
   })
   codigoFacultad: string;
 
-  @hasMany(() => Departamento, {keyTo: 'id_departamento'})
+  @hasMany(() => Departamento)
   departamentos: Departamento[];
 
   constructor(data?: Partial<Facultad>) {

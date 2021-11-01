@@ -9,7 +9,7 @@ export class DepartamentoProponenteRepository extends DefaultCrudRepository<
   DepartamentoProponenteRelations
 > {
   constructor(
-    @inject('datasources.mysql') dataSource: MysqlDataSource,
+    @inject('datasources.Mysql') dataSource: MysqlDataSource,
   ) {
     super(DepartamentoProponente, dataSource);
   }

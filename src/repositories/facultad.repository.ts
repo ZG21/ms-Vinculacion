@@ -13,7 +13,7 @@ export class FacultadRepository extends DefaultCrudRepository<
   public readonly departamentos: HasManyRepositoryFactory<Departamento, typeof Facultad.prototype.id>;
 
   constructor(
-    @inject('datasources.mysql') dataSource: MysqlDataSource, @repository.getter('DepartamentoRepository') protected departamentoRepositoryGetter: Getter<DepartamentoRepository>,
+    @inject('datasources.Mysql') dataSource: MysqlDataSource, @repository.getter('DepartamentoRepository') protected departamentoRepositoryGetter: Getter<DepartamentoRepository>,
   ) {
     super(Facultad, dataSource);
     this.departamentos = this.createHasManyRepositoryFactoryFor('departamentos', departamentoRepositoryGetter,);

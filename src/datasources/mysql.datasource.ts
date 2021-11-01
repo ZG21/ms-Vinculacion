@@ -2,14 +2,14 @@ import {inject, lifeCycleObserver, LifeCycleObserver} from '@loopback/core';
 import {juggler} from '@loopback/repository';
 
 const config = {
-  name: 'mysql',
+  name: 'Mysql',
   connector: 'mysql',
   url: '',
-  host: 'localhost',
+  host: 'proyectprog3.mysql.database.azure.com',
   port: 3306,
-  user: 'root',
-  password: '',
-  database: 'proyecto-prog3'
+  user: 'adminProyecto@proyectprog3',
+  password: 'HNCkda11',
+  database: 'Prueba'
 };
 
 // Observe application's life cycle to disconnect the datasource when
@@ -19,11 +19,11 @@ const config = {
 @lifeCycleObserver('datasource')
 export class MysqlDataSource extends juggler.DataSource
   implements LifeCycleObserver {
-  static dataSourceName = 'mysql';
+  static dataSourceName = 'Mysql';
   static readonly defaultConfig = config;
 
   constructor(
-    @inject('datasources.config.mysql', {optional: true})
+    @inject('datasources.config.Mysql', {optional: true})
     dsConfig: object = config,
   ) {
     super(dsConfig);

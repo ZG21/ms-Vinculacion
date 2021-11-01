@@ -22,7 +22,7 @@ export class Departamento extends Entity {
   })
   id_facultad: string;
 
-  @belongsTo(() => Facultad,{keyTo: 'tiene_facultad'})
+  @belongsTo(() => Facultad)
   facultadId: string;
 
   constructor(data?: Partial<Departamento>) {

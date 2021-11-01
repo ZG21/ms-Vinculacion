@@ -13,7 +13,7 @@ export class DepartamentoRepository extends DefaultCrudRepository<
   public readonly facultad: BelongsToAccessor<Facultad, typeof Departamento.prototype.id>;
 
   constructor(
-    @inject('datasources.mysql') dataSource: MysqlDataSource, @repository.getter('FacultadRepository') protected facultadRepositoryGetter: Getter<FacultadRepository>,
+    @inject('datasources.Mysql') dataSource: MysqlDataSource, @repository.getter('FacultadRepository') protected facultadRepositoryGetter: Getter<FacultadRepository>,
   ) {
     super(Departamento, dataSource);
     this.facultad = this.createBelongsToAccessorFor('facultad', facultadRepositoryGetter,);

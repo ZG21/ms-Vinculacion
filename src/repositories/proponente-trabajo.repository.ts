@@ -1,7 +1,7 @@
-import {Getter, inject} from '@loopback/core';
-import {DefaultCrudRepository, HasManyThroughRepositoryFactory, repository, HasOneRepositoryFactory} from '@loopback/repository';
+import {inject, Getter} from '@loopback/core';
+import {DefaultCrudRepository, repository, HasManyThroughRepositoryFactory, HasOneRepositoryFactory} from '@loopback/repository';
 import {MysqlDataSource} from '../datasources';
-import {Departamento, DepartamentoProponente, ProponenteTrabajo, ProponenteTrabajoRelations, TipoVinculacion} from '../models';
+import {ProponenteTrabajo, ProponenteTrabajoRelations, Departamento, DepartamentoProponente, TipoVinculacion} from '../models';
 import {DepartamentoProponenteRepository} from './departamento-proponente.repository';
 import {DepartamentoRepository} from './departamento.repository';
 import {TipoVinculacionRepository} from './tipo-vinculacion.repository';
@@ -20,7 +20,7 @@ export class ProponenteTrabajoRepository extends DefaultCrudRepository<
   public readonly tipoVinculacion: HasOneRepositoryFactory<TipoVinculacion, typeof ProponenteTrabajo.prototype.id>;
 
   constructor(
-    @inject('datasources.mysql') dataSource: MysqlDataSource, @repository.getter('DepartamentoProponenteRepository') protected departamentoProponenteRepositoryGetter: Getter<DepartamentoProponenteRepository>, @repository.getter('DepartamentoRepository') protected departamentoRepositoryGetter: Getter<DepartamentoRepository>, @repository.getter('TipoVinculacionRepository') protected tipoVinculacionRepositoryGetter: Getter<TipoVinculacionRepository>,
+    @inject('datasources.Mysql') dataSource: MysqlDataSource, @repository.getter('DepartamentoProponenteRepository') protected departamentoProponenteRepositoryGetter: Getter<DepartamentoProponenteRepository>, @repository.getter('DepartamentoRepository') protected departamentoRepositoryGetter: Getter<DepartamentoRepository>, @repository.getter('TipoVinculacionRepository') protected tipoVinculacionRepositoryGetter: Getter<TipoVinculacionRepository>,
   ) {
     super(ProponenteTrabajo, dataSource);
     this.tipoVinculacion = this.createHasOneRepositoryFactoryFor('tipoVinculacion', tipoVinculacionRepositoryGetter);

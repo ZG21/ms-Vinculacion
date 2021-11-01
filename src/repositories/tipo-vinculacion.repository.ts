@@ -13,7 +13,7 @@ export class TipoVinculacionRepository extends DefaultCrudRepository<
   public readonly proponenteTrabajo: BelongsToAccessor<ProponenteTrabajo, typeof TipoVinculacion.prototype.id>;
 
   constructor(
-    @inject('datasources.mysql') dataSource: MysqlDataSource, @repository.getter('ProponenteTrabajoRepository') protected proponenteTrabajoRepositoryGetter: Getter<ProponenteTrabajoRepository>,
+    @inject('datasources.Mysql') dataSource: MysqlDataSource, @repository.getter('ProponenteTrabajoRepository') protected proponenteTrabajoRepositoryGetter: Getter<ProponenteTrabajoRepository>,
   ) {
     super(TipoVinculacion, dataSource);
     this.proponenteTrabajo = this.createBelongsToAccessorFor('proponenteTrabajo', proponenteTrabajoRepositoryGetter,);

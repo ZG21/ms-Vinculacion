@@ -9,3 +9,8 @@ export * from './proponente-trabajo.controller';
 export * from './tipo-vinculacion.controller';
 export * from './proponente-trabajo-tipo-vinculacion.controller';
 export * from './tipo-vinculacion-proponente-trabajo.controller';
+export * from './facultad-departamento.controller';
+export * from './departamento-facultad.controller';
+export * from './proponente-trabajo-departamento.controller';
+export * from './proponente-trabajo-tipo-vinculacion.controller';
+export * from './tipo-vinculacion-proponente-trabajo.controller';

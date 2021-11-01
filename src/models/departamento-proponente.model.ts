@@ -21,6 +21,15 @@ export class DepartamentoProponente extends Entity {
   })
   id_departamento: string;
 
+  @property({
+    type: 'string',
+  })
+  proponenteTrabajoId?: string;
+
+  @property({
+    type: 'string',
+  })
+  departamentoId?: string;
 
   constructor(data?: Partial<DepartamentoProponente>) {
     super(data);
