@@ -70,7 +70,7 @@ export class CargarArchivosController {
    * @param response
    * @param request
    */
-  @post('/CargarDocumentoPersona', {
+  @post('/CargarDocumentoProponente', {
     responses: {
       200: {
         content: {
@@ -80,16 +80,16 @@ export class CargarArchivosController {
             },
           },
         },
-        description: 'Función de carga de documentos de la persona.',
+        description: 'Función de carga de documentos del proponente.',
       },
     },
   })
-  async DocumentosPersona(
+  async DocumentosProponente(
     @inject(RestBindings.Http.RESPONSE) response: Response,
     @requestBody.file() request: Request,
   ): Promise<object | false> {
-    const rutaDocumentoPersona = path.join(__dirname, llaves.carpetaDocumentoPersona);
-    let res = await this.StoreFileToPath(rutaDocumentoPersona, llaves.nombreCampoDocumentoPersona, request, response, llaves.extensionesPermitidasDOC);
+    const rutaDocumentoProponente = path.join(__dirname, llaves.carpetaDocumentoProponente);
+    let res = await this.StoreFileToPath(rutaDocumentoProponente, llaves.nombreCampoDocumentoProponente, request, response, llaves.extensionesPermitidasDOC);
     if (res) {
       const nombre_archivo = response.req?.file?.filename;
       if (nombre_archivo) {

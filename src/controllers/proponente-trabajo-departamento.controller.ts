@@ -134,15 +134,6 @@ export class ProponenteTrabajoDepartamentoController {
 
   }
 
-
-
-
-
-
-
-
-
-
    @post('/relacionar-proponentes-trabajo-departamento/{id}', {
     responses: {
       '200': {

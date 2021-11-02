@@ -88,7 +88,7 @@ export class DescargarArchivosController {
         break;
 
       case 2:
-        ruta = path.join(__dirname, llaves.carpetaDocumentoPersona);
+        ruta = path.join(__dirname, llaves.carpetaDocumentoProponente);
     }
     return ruta;
   }

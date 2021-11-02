@@ -3,8 +3,8 @@ export namespace Keys {
   export const nombreCampoFotoProponente = 'file';
   export const extensionesPermitidasIMG: string[] = ['.PNG', '.JPG', '.JPEG', '.SVG'];
   export const tamMaxImagenProducto = 1024 * 1024;
-  export const carpetaDocumentoPersona = '../../archivos/documentos';
-  export const nombreCampoDocumentoPersona = 'file';
+  export const carpetaDocumentoProponente = '../../archivos/documentos';
+  export const nombreCampoDocumentoProponente = 'file';
   export const extensionesPermitidasDOC: string[] = ['.PDF', '.DOC', '.DOCX', '.XLS', '.XLSX'];
   export const url_validar_token = "http://localhost:5001/validar-token";
   export const rol_administrador = "616cb5b300d00749947c888d";
