@@ -1,110 +1,38 @@
 import {
-  Count,
-  CountSchema,
-  Filter,
   repository,
-  Where
 } from '@loopback/repository';
 import {
-  del,
+  param,
   get,
   getModelSchemaRef,
-  getWhereSchemaFor,
-  param,
-  patch,
-  post,
-  requestBody
 } from '@loopback/rest';
 import {
   ProponenteTrabajo,
-  TipoVinculacion
+  TipoVinculacion,
 } from '../models';
 import {ProponenteTrabajoRepository} from '../repositories';
 
 export class ProponenteTrabajoTipoVinculacionController {
   constructor(
-    @repository(ProponenteTrabajoRepository) protected proponenteTrabajoRepository: ProponenteTrabajoRepository,
+    @repository(ProponenteTrabajoRepository)
+    public proponenteTrabajoRepository: ProponenteTrabajoRepository,
   ) { }
 
   @get('/proponente-trabajos/{id}/tipo-vinculacion', {
     responses: {
       '200': {
-        description: 'ProponenteTrabajo has one TipoVinculacion',
+        description: 'TipoVinculacion belonging to ProponenteTrabajo',
         content: {
           'application/json': {
-            schema: getModelSchemaRef(TipoVinculacion),
+            schema: {type: 'array', items: getModelSchemaRef(TipoVinculacion)},
           },
         },
       },
     },
   })
-  async get(
-    @param.path.number('id') id: number,
-    @param.query.object('filter') filter?: Filter<TipoVinculacion>,
-  ): Promise<TipoVinculacion> {
-    return this.proponenteTrabajoRepository.tipoVinculacion(id).get(filter);
-  }
-
-  @post('/proponente-trabajos/{id}/tipo-vinculacion', {
-    responses: {
-      '200': {
-        description: 'ProponenteTrabajo model instance',
-        content: {'application/json': {schema: getModelSchemaRef(TipoVinculacion)}},
-      },
-    },
-  })
-  async create(
+  async getTipoVinculacion(
     @param.path.number('id') id: typeof ProponenteTrabajo.prototype.id,
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: getModelSchemaRef(TipoVinculacion, {
-            title: 'NewTipoVinculacionInProponenteTrabajo',
-            exclude: ['id'],
-            optional: ['proponenteTrabajoId']
-          }),
-        },
-      },
-    }) tipoVinculacion: Omit<TipoVinculacion, 'id'>,
   ): Promise<TipoVinculacion> {
-    return this.proponenteTrabajoRepository.tipoVinculacion(id).create(tipoVinculacion);
-  }
-
-  @patch('/proponente-trabajos/{id}/tipo-vinculacion', {
-    responses: {
-      '200': {
-        description: 'ProponenteTrabajo.TipoVinculacion PATCH success count',
-        content: {'application/json': {schema: CountSchema}},
-      },
-    },
-  })
-  async patch(
-    @param.path.number('id') id: number,
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: getModelSchemaRef(TipoVinculacion, {partial: true}),
-        },
-      },
-    })
-    tipoVinculacion: Partial<TipoVinculacion>,
-    @param.query.object('where', getWhereSchemaFor(TipoVinculacion)) where?: Where<TipoVinculacion>,
-  ): Promise<Count> {
-    return this.proponenteTrabajoRepository.tipoVinculacion(id).patch(tipoVinculacion, where);
-  }
-
-  @del('/proponente-trabajos/{id}/tipo-vinculacion', {
-    responses: {
-      '200': {
-        description: 'ProponenteTrabajo.TipoVinculacion DELETE success count',
-        content: {'application/json': {schema: CountSchema}},
-      },
-    },
-  })
-  async delete(
-    @param.path.number('id') id: number,
-    @param.query.object('where', getWhereSchemaFor(TipoVinculacion)) where?: Where<TipoVinculacion>,
-  ): Promise<Count> {
-    return this.proponenteTrabajoRepository.tipoVinculacion(id).delete(where);
+    return this.proponenteTrabajoRepository.tipoVinculacion(id);
   }
 }

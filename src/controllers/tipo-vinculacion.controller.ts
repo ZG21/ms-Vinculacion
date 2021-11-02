@@ -1,3 +1,4 @@
+import {authenticate} from '@loopback/authentication';
 import {
   Count,
   CountSchema,
@@ -13,14 +14,14 @@ import {
 } from '@loopback/rest';
 import {TipoVinculacion} from '../models';
 import {TipoVinculacionRepository} from '../repositories';
-
+//@authenticate("admin")
 export class TipoVinculacionController {
   constructor(
     @repository(TipoVinculacionRepository)
     public tipoVinculacionRepository : TipoVinculacionRepository,
   ) {}
-
-  @post('/tipo-vinculacion')
+  @authenticate("admin")
+  @post('/tipo-vinculacions')
   @response(200, {
     description: 'TipoVinculacion model instance',
     content: {'application/json': {schema: getModelSchemaRef(TipoVinculacion)}},
@@ -41,7 +42,7 @@ export class TipoVinculacionController {
     return this.tipoVinculacionRepository.create(tipoVinculacion);
   }
 
-  @get('/tipo-vinculacion/count')
+  @get('/tipo-vinculacions/count')
   @response(200, {
     description: 'TipoVinculacion model count',
     content: {'application/json': {schema: CountSchema}},
@@ -52,7 +53,7 @@ export class TipoVinculacionController {
     return this.tipoVinculacionRepository.count(where);
   }
 
-  @get('/tipo-vinculacion')
+  @get('/tipo-vinculacions')
   @response(200, {
     description: 'Array of TipoVinculacion model instances',
     content: {
@@ -70,7 +71,7 @@ export class TipoVinculacionController {
     return this.tipoVinculacionRepository.find(filter);
   }
 
-  @patch('/tipo-vinculacion')
+  @patch('/tipo-vinculacions')
   @response(200, {
     description: 'TipoVinculacion PATCH success count',
     content: {'application/json': {schema: CountSchema}},
@@ -89,7 +90,7 @@ export class TipoVinculacionController {
     return this.tipoVinculacionRepository.updateAll(tipoVinculacion, where);
   }
 
-  @get('/tipo-vinculacion/{id}')
+  @get('/tipo-vinculacions/{id}')
   @response(200, {
     description: 'TipoVinculacion model instance',
     content: {
@@ -105,7 +106,7 @@ export class TipoVinculacionController {
     return this.tipoVinculacionRepository.findById(id, filter);
   }
 
-  @patch('/tipo-vinculacion/{id}')
+  @patch('/tipo-vinculacions/{id}')
   @response(204, {
     description: 'TipoVinculacion PATCH success',
   })
@@ -123,7 +124,7 @@ export class TipoVinculacionController {
     await this.tipoVinculacionRepository.updateById(id, tipoVinculacion);
   }
 
-  @put('/tipo-vinculacion/{id}')
+  @put('/tipo-vinculacions/{id}')
   @response(204, {
     description: 'TipoVinculacion PUT success',
   })
@@ -134,7 +135,7 @@ export class TipoVinculacionController {
     await this.tipoVinculacionRepository.replaceById(id, tipoVinculacion);
   }
 
-  @del('/tipo-vinculacion/{id}')
+  @del('/tipo-vinculacions/{id}')
   @response(204, {
     description: 'TipoVinculacion DELETE success',
   })

@@ -1,9 +1,20 @@
-import {Entity, hasMany, hasOne, model, property} from '@loopback/repository';
+import {belongsTo, Entity, hasMany, model, property} from '@loopback/repository';
 import {DepartamentoProponente} from './departamento-proponente.model';
 import {Departamento} from './departamento.model';
 import {TipoVinculacion} from './tipo-vinculacion.model';
 
-@model()
+@model({
+  settings: {
+    foreignKeys: {
+      fk_proponente_id_vinculacion: {
+        name: 'fk_proponente_id_vinculacion',
+        entity: 'TipoVinculacion',
+        entityKey: 'id',
+        foreignKey: 'tipoVinculacionId',
+      }
+    },
+  },
+})
 export class ProponenteTrabajo extends Entity {
   @property({
     type: 'number',
@@ -50,15 +61,9 @@ export class ProponenteTrabajo extends Entity {
 
   @property({
     type: 'number',
-    required: true,
+    required: false,
   })
   celular: number;
-
-  @property({
-    type: 'number',
-    required: true,
-  })
-  id_vinculacion: number;
 
   @property({
     type: "string",
@@ -66,11 +71,18 @@ export class ProponenteTrabajo extends Entity {
   })
   foto: string;
 
+  @property({
+    type: "string",
+    required: false,
+  })
+  fotoProponenteId: string;
+
+
   @hasMany(() => Departamento, {through: {model: () => DepartamentoProponente}})
   departamentos: Departamento[];
 
-  @hasOne(() => TipoVinculacion)
-  tipoVinculacion: TipoVinculacion;
+  @belongsTo(() => TipoVinculacion)
+  tipoVinculacionId: number;
 
   constructor(data?: Partial<ProponenteTrabajo>) {
     super(data);

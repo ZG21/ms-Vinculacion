@@ -16,7 +16,7 @@ import {
   requestBody
 } from '@loopback/rest';
 import {
-  Departamento, ProponenteTrabajo
+  Departamento, DepartamentoProponente, ProponenteTrabajo
 } from '../models';
 import {ProponenteTrabajoRepository} from '../repositories';
 
@@ -104,5 +104,33 @@ export class ProponenteTrabajoDepartamentoController {
     @param.query.object('where', getWhereSchemaFor(Departamento)) where?: Where<Departamento>,
   ): Promise<Count> {
     return this.proponenteTrabajoRepository.departamentos(id).delete(where);
+  }
+
+  //other method
+  @post('/proponente-trabajo-departamento', {
+    responses: {
+      '200': {
+        description: 'create a DepartamentoProponente model instance',
+        content: {'application/json': {schema: getModelSchemaRef(DepartamentoProponente)}},
+      },
+    },
+  })
+  async createRelation(
+
+    @requestBody({
+      content: {
+        'application/json': {
+          schema: getModelSchemaRef(DepartamentoProponente, {
+            title: 'NewDepartamentoProponenteInProponente',
+            exclude: ['id'],
+          }),
+        },
+      },
+    }) datos: Omit<DepartamentoProponente, 'id'>,
+  ): Promise<DepartamentoProponente | null> {
+    let registro = await this.proponenteTrabajoRepository.create(datos)
+    return registro
+
+
   }
 }

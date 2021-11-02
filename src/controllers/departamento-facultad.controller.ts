@@ -31,7 +31,7 @@ export class DepartamentoFacultadController {
     },
   })
   async getFacultad(
-    @param.path.string('id') id: typeof Departamento.prototype.id,
+    @param.path.number('id') id: typeof Departamento.prototype.id,
   ): Promise<Facultad> {
     return this.departamentoRepository.facultad(id);
   }

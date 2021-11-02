@@ -13,14 +13,14 @@ import {
 } from '@loopback/rest';
 import {Facultad} from '../models';
 import {FacultadRepository} from '../repositories';
-
+//@authenticate("admin")
 export class FacultadController {
   constructor(
     @repository(FacultadRepository)
     public facultadRepository : FacultadRepository,
   ) {}
 
-  @post('/facultades')
+  @post('/facultads')
   @response(200, {
     description: 'Facultad model instance',
     content: {'application/json': {schema: getModelSchemaRef(Facultad)}},
@@ -41,7 +41,7 @@ export class FacultadController {
     return this.facultadRepository.create(facultad);
   }
 
-  @get('/facultades/count')
+  @get('/facultads/count')
   @response(200, {
     description: 'Facultad model count',
     content: {'application/json': {schema: CountSchema}},
@@ -52,7 +52,7 @@ export class FacultadController {
     return this.facultadRepository.count(where);
   }
 
-  @get('/facultades')
+  @get('/facultads')
   @response(200, {
     description: 'Array of Facultad model instances',
     content: {
@@ -70,7 +70,7 @@ export class FacultadController {
     return this.facultadRepository.find(filter);
   }
 
-  @patch('/facultades')
+  @patch('/facultads')
   @response(200, {
     description: 'Facultad PATCH success count',
     content: {'application/json': {schema: CountSchema}},
@@ -89,7 +89,7 @@ export class FacultadController {
     return this.facultadRepository.updateAll(facultad, where);
   }
 
-  @get('/facultades/{id}')
+  @get('/facultads/{id}')
   @response(200, {
     description: 'Facultad model instance',
     content: {
@@ -105,7 +105,7 @@ export class FacultadController {
     return this.facultadRepository.findById(id, filter);
   }
 
-  @patch('/facultades/{id}')
+  @patch('/facultads/{id}')
   @response(204, {
     description: 'Facultad PATCH success',
   })
@@ -123,7 +123,7 @@ export class FacultadController {
     await this.facultadRepository.updateById(id, facultad);
   }
 
-  @put('/facultades/{id}')
+  @put('/facultads/{id}')
   @response(204, {
     description: 'Facultad PUT success',
   })
@@ -134,7 +134,7 @@ export class FacultadController {
     await this.facultadRepository.replaceById(id, facultad);
   }
 
-  @del('/facultades/{id}')
+  @del('/facultads/{id}')
   @response(204, {
     description: 'Facultad DELETE success',
   })

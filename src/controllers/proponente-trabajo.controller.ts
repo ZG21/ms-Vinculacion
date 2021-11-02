@@ -13,8 +13,9 @@ import {
 } from '@loopback/rest';
 import {ProponenteTrabajo} from '../models';
 import {ProponenteTrabajoRepository} from '../repositories';
-
+//@authenticate("admin")
 export class ProponenteTrabajoController {
+
   constructor(
     @repository(ProponenteTrabajoRepository)
     public proponenteTrabajoRepository : ProponenteTrabajoRepository,

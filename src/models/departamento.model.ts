@@ -1,7 +1,18 @@
 import {belongsTo, Entity, model, property} from '@loopback/repository';
 import {Facultad} from './facultad.model';
 
-@model()
+@model({
+  settings: {
+    foreignKeys: {
+      fk_departamento_id_facultad: {
+        name: 'fk_departamento_id_facultad',
+        entity: 'Facultad',
+        entityKey: 'id',
+        foreignKey: 'facultadId',
+      }
+    },
+  },
+})
 export class Departamento extends Entity {
   @property({
     type: 'number',
@@ -16,14 +27,8 @@ export class Departamento extends Entity {
   })
   nombre: string;
 
-  @property({
-    type: 'number',
-    required: true,
-  })
-  id_facultad: number;
-
   @belongsTo(() => Facultad)
-  facultadId: string;
+  facultadId: number;
 
   constructor(data?: Partial<Departamento>) {
     super(data);

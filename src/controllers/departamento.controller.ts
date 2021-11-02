@@ -13,7 +13,7 @@ import {
 } from '@loopback/rest';
 import {Departamento} from '../models';
 import {DepartamentoRepository} from '../repositories';
-
+ //@authenticate("admin")
 export class DepartamentoController {
   constructor(
     @repository(DepartamentoRepository)
