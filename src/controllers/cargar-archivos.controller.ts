@@ -41,20 +41,24 @@ export class CargarArchivosController {
             },
           },
         },
-        description: 'Función de carga de la foto de un proponente.',
+        description: 'Función de carga de una foto de una solicitud.',
       },
     },
   })
-  async cargarFotoDelProponente(
+  async cargarFotoProponente(
     @inject(RestBindings.Http.RESPONSE) response: Response,
     @requestBody.file() request: Request,
-    @param.path.number("proponenteTrabajoId") proponenteTrabajoId: number
+    @param.path.number("proponenteTrabajoId") ProponenteTrabajoId: number
   ): Promise<object | false> {
-    const rutaFotoProponente = path.join(__dirname, llaves.carpetaFotoProponente);
-    let res = await this.StoreFileToPath(rutaFotoProponente, llaves.carpetaFotoProponente, request, response, llaves.extensionesPermitidasIMG);
+    const rutaFoto = path.join(__dirname, llaves.carpetaFotoProponente);
+    let res = await this.StoreFileToPath(rutaFoto, llaves.nombreCampoFotoProponente, request, response, llaves.extensionesPermitidasIMG);
     if (res) {
       const nombre_archivo = response.req?.file?.filename;
       if (nombre_archivo) {
+        let data = {
+          foto: nombre_archivo
+        }
+        await this.ProponenteTrabajoRepository.updateById(ProponenteTrabajoId, data);
         return {filename: nombre_archivo};
       }
     }

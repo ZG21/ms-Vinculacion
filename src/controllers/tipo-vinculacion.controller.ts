@@ -1,4 +1,3 @@
-import {authenticate} from '@loopback/authentication';
 import {
   Count,
   CountSchema,
@@ -20,7 +19,7 @@ export class TipoVinculacionController {
     @repository(TipoVinculacionRepository)
     public tipoVinculacionRepository : TipoVinculacionRepository,
   ) {}
-  @authenticate("admin")
+  //@authenticate("admin")
   @post('/tipo-vinculacions')
   @response(200, {
     description: 'TipoVinculacion model instance',

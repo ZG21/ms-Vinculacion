@@ -15,14 +15,13 @@ import {
   post,
   requestBody
 } from '@loopback/rest';
-import {
-  Departamento, DepartamentoProponente, ProponenteTrabajo
-} from '../models';
-import {ProponenteTrabajoRepository} from '../repositories';
+import {ArregloDepartamentos, Departamento, DepartamentoProponente, ProponenteTrabajo} from '../models';
+import {DepartamentoProponenteRepository, ProponenteTrabajoRepository} from '../repositories';
 
 export class ProponenteTrabajoDepartamentoController {
   constructor(
     @repository(ProponenteTrabajoRepository) protected proponenteTrabajoRepository: ProponenteTrabajoRepository,
+    @repository(DepartamentoProponenteRepository) protected departamentoProponenteRepository: DepartamentoProponenteRepository,
   ) { }
 
   @get('/proponente-trabajos/{id}/departamentos', {
@@ -128,9 +127,59 @@ export class ProponenteTrabajoDepartamentoController {
       },
     }) datos: Omit<DepartamentoProponente, 'id'>,
   ): Promise<DepartamentoProponente | null> {
-    let registro = await this.proponenteTrabajoRepository.create(datos)
+    let registro = await this.departamentoProponenteRepository.create(datos)
+    console.log(registro)
     return registro
 
 
+  }
+
+
+
+
+
+
+
+
+
+
+   @post('/relacionar-proponentes-trabajo-departamento/{id}', {
+    responses: {
+      '200': {
+        description: 'create a DepartamentoProponente model instance',
+        content: {'application/json': {schema: getModelSchemaRef(DepartamentoProponente)}},
+      },
+    },
+  })
+  async createRelations(
+
+    @requestBody({
+      content: {
+        'application/json': {
+          schema: getModelSchemaRef(ArregloDepartamentos, {}),
+        },
+      },
+    }) datos: ArregloDepartamentos,
+    @param.path.number('id') id_proponente: typeof ProponenteTrabajo.prototype.id
+  ): Promise<Boolean> {
+    if (datos.arregloDepartamentos.length > 0) {
+      datos.arregloDepartamentos.forEach(async(id_departamento: number) => {
+        let existe = await this.departamentoProponenteRepository.findOne({
+          where: {
+            proponenteTrabajoId: id_proponente,
+            departamentoId: id_departamento
+          }
+        })
+        if (!existe) {
+          this.departamentoProponenteRepository.create({
+            proponenteTrabajoId: id_proponente,
+            departamentoId: id_departamento,
+          })
+        }
+      })
+      return true
+
+    }
+    return false
   }
 }

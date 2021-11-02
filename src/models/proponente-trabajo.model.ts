@@ -71,11 +71,6 @@ export class ProponenteTrabajo extends Entity {
   })
   foto: string;
 
-  @property({
-    type: "string",
-    required: false,
-  })
-  fotoProponenteId: string;
 
 
   @hasMany(() => Departamento, {through: {model: () => DepartamentoProponente}})
