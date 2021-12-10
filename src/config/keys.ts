@@ -2,7 +2,7 @@ export namespace Keys {
   export const carpetaFotoProponente = "../../archivos/fotosProponentes/";
   export const nombreCampoFotoProponente = 'file';
   export const extensionesPermitidasIMG: string[] = ['.PNG', '.JPG', '.JPEG', '.SVG'];
-  export const tamMaxImagenProducto = 1024 * 1024;
+  export const tamMaxImagenProponente = 1024 * 1024;
   export const carpetaDocumentoProponente = '../../archivos/documentos';
   export const nombreCampoDocumentoProponente = 'file';
   export const extensionesPermitidasDOC: string[] = ['.PDF', '.DOC', '.DOCX', '.XLS', '.XLSX'];
